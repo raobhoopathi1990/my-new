@@ -3,13 +3,13 @@ node{
     // Clone repo
 	git branch: 'master', 
 	credentialsId: 'github', 
-	url:'https://github.com/raobhoopathi1990/my-new'
+	url: 'https://github.com/raobhoopathi1990/my-new'
       }
 
    stage('clean package'){
 	   // Build using maven
-	   
-	   sh ' mvn install package'
+	       def mvnHome = tool name: 'maven_linux', type: 'maven'
+	       sh "${mvnHome}/bin/mvn package"
    }
 }
    
