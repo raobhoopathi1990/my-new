@@ -3,7 +3,7 @@ node{
     // Clone repo
 	git branch: 'master', 
 	credentialsId: 'github', 
-	url: 'https://github.com/javahometech/my-apps'
+	url: 'https://github.com/raobhoopathi1990/my-new'
       }
 
    stage('clean package'){
