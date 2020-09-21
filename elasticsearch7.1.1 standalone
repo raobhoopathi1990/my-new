@@ -1,0 +1,51 @@
+sudo su -
+yum install java-1.8.0-openjdk.x86_64
+java -version
+if u see other than 1.8*
+cd /etc/java/
+ls
+update-alternatives --config java
+select 1 (or) 2 depending upon your requirement
+java -version -- u can see java-1.8.0_252
+cd ~
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-7.1.1-no-jdk-linux-x86_64.tar.gz
+ls -- we can see tar file
+tar -xvf elasticsearch-oss-7.1.1-no-jdk-linux-x86_64.tar.gz
+cd /opt
+mkdir elasticsearch
+ls
+mv /root/elasticsearch-7.1.1/* elasticsearch/ -- move elasticsearch to required folder
+cd elastisearch/
+ls
+bin     lib          logs     NOTICE.txt  README.textile
+config  LICENSE.txt  modules  plugins
+cd config/
+ls
+elasticsearch.yml  jvm.options  log4j2.properties
+mv elasticsearch.yml elasticsearch.yml.back --- we are copying what is there in elastisearch file of author taking original backup
+vi elasticsearch.yml
+vi jvm.options
+mv log4j2.properties log4j2.properties.back --- we are coyping what is there in author file taking original backup
+vi log4j2.properties
+adduser elastisearch
+vi /etc/passwd
+change /home to /opt
+su - elastisearch
+pwd
+/opt/elastisearch
+cd bin
+ls
+elasticsearch  elasticsearch-cli  elasticsearch-env  elasticsearch-keystore  elasticsearch-node  elasticsearch-plugin  elasticsearch-shard
+elastisearch &
+exit
+--- In root now 
+chown -R elasticsearch:elasticsearch /opt/elasticsearch/ 
+chown -R elasticsearch:elasticsearch /opt/elasticsearch/bin
+chown -R elasticsearch:elasticsearch /opt/elasticsearch/config
+-- u sholud be under root to change permissions
+export PATH=$PATH:/opt/elasticsearch/bin
+su - elasticsearch
+echo $PATH
+elasticsearch &
+netstat -tulpn
+curl localhost:9200
